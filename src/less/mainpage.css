@@ -1,0 +1,123 @@
+.global_container {
+  display: flex;
+  flex-direction: column;
+}
+.global_container header nav {
+  padding: 15px 0;
+}
+.global_container header nav .section_logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.global_container header nav .section_logo .logo a {
+  font-size: 28px;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.global_container header nav .section_logo .navigation {
+  display: flex;
+}
+.global_container header nav .section_logo .navigation li {
+  padding: 0 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.global_container header nav .section_logo .navigation li:hover {
+  transform: scale(1.2);
+}
+.global_container header nav .section_logo .navigation li a {
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.global_container header section {
+  padding: 20px 0;
+  background-size: cover;
+}
+.global_container header section .fixed_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.global_container header section .fixed_header .catalog p {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+.global_container header section .fixed_header .search {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 3px 10px;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+}
+.global_container header section .fixed_header .search input {
+  padding-right: 5px;
+  width: 100%;
+  border: none;
+}
+.global_container header section .fixed_header .search .fas {
+  cursor: pointer;
+}
+.global_container main {
+  flex-grow: 1;
+}
+.global_container .siteHeader {
+  padding: 30px 0;
+  background-size: cover;
+  background-position-y: center;
+}
+.global_container .siteHeader nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.global_container .siteHeader nav .logo h1 {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  user-select: none;
+  color: #fff;
+}
+.global_container .siteHeader nav .search input {
+  min-width: 250px ;
+  border-radius: 5px;
+  height: 20px;
+  padding-left: 10px;
+}
+.global_container .siteHeader nav ul {
+  display: flex;
+}
+.global_container .siteHeader nav ul li {
+  padding: 0 15px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  color: #fff;
+}
+.global_container .siteHeader nav ul li:hover {
+  transition: all 0.3s ease;
+  transform: scale(1.2);
+}
+.global_container footer {
+  padding: 30px 0;
+  background-position-y: center;
+}
+.global_container footer .left_footer_bar .logo h1 {
+  color: #fff;
+  font-size: 28px;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.global_container footer .left_footer_bar .contacts_footer p {
+  color: #fff;
+}
+.global_container footer .center_footer_bar ul li {
+  color: #fff;
+}
