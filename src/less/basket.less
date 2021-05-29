@@ -1,0 +1,149 @@
+.modal_basket_container {
+    z-index: 20;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    pointer-events: auto;
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    .overlay {
+        z-index: 15;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    .modal_basket {
+        position: relative;
+        z-index: 20;
+        max-width: 800px;
+        background-color: #fff;
+        padding: 30px;
+        margin: 50px auto;
+        border-radius: 5px;
+       
+        .title_modal_basket{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+            p{
+                font-size: 16px;
+                font-weight: 500;
+                user-select: none;
+            }
+            .fas{
+                font-size: 18px;
+                color: rgba(16,16,16,1);
+                cursor: pointer;
+                &:hover{
+                    transition: all 0.3s ease;
+                    transform: scale(1.2);
+                }
+            }
+        }
+        ul{
+            padding: 10px 0;
+            li{
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+                .item{
+                    display: flex;
+                    .item_img{
+                        height: 100px;
+                        width: 100px;
+                        margin-right: 15px;
+                    }
+                    .item_description{
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+
+                        .item_header{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            flex-grow: 1;
+                            h3{
+                                font-weight: 500;
+                                font-size: 16px;
+                                user-select: none;
+                            }
+                            .fas{
+                                cursor: pointer;
+                                font-size: 16px;
+                                &:hover{
+                                    transition: all 0.3s ease;
+                                    transform: scale(1.2);
+                                }
+                            }
+                        }
+                        .item_footer{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            .counter{
+                                display: flex;
+                                align-items: center;
+                                .fas{
+                                    font-size: 20px;
+                                    cursor: pointer;
+                                }
+                                input{
+                                    margin: 0 10px;
+                                    width: 30px;
+                                    height: 30px;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .basket_footer{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            >a{
+                border: 1px solid #f5f5f5;
+                background-color: #f5f5f5;
+                color: #3e77aa;
+                padding: 11px 14px;
+                cursor: pointer;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+            .order{
+                span{
+                    padding-right: 50px;
+                    font-size: 17px;
+                }
+                button{
+                    padding: 9px 11px;
+                    border: 1px solid #000;
+                    cursor: pointer;
+                    background-color: rgba(16,16,16,1);
+                    a{
+                        font-size: 20px;
+                        color: #fff;
+                        text-decoration: none;
+                    }    
+                }
+            }
+        }
+    }
+}

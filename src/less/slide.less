@@ -1,0 +1,61 @@
+.sliderContainer{
+    position: relative;
+    .slide{
+        height: 500px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .slick-arrow{
+        font-size: 0;
+        border: none;
+        display: none;
+    }
+    .slick-dots{
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 15px;
+        text-align: center;
+        li{
+            display: inline-block;
+            &.slick-active{
+                > button{
+                    background-color: rgba(0,0,0,1);
+                    transform: scale(1.2);
+                    transition: all 0.3s ease;
+                }
+            }
+            button{
+                font-size: 0;
+                margin: 0 7px;
+                height: 12px;
+                width: 12px;
+                border:none;
+                cursor: pointer;
+                background-color: rgba(0,0,0,0.4);
+                transition: all 0.3s ease;
+                border-radius: 100%;
+                outline: none;
+            }
+        }
+    }
+}
+
+/*
+ .slick-arrow{
+        // position: absolute;
+        // top: 50%;
+        // z-index: 2;
+        font-size: 0;
+        border: none;
+        // background-image: url('./../img/left-arrow.svg');
+        // width: 50px;
+        // height: 50px;
+        // border:none;
+        // background-color: rgba(0,0,0,0);
+        // cursor: pointer;
+        // outline: none;
+        // transition: all 0.3s ease;
+        
+    }
+*/

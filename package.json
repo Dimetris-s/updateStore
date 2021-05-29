@@ -1,0 +1,27 @@
+{
+  "name": "wow_app_test_0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "*",
+    "browser-sync": "*",
+    "browserify": "*",
+    "firebase": "^8.1.1",
+    "gulp": "3.9.0",
+    "gulp-less": "*",
+    "jquery": "*",
+    "swiper": "*",
+    "slick-carousel": "1.6.0",
+    "vinyl-source-stream": "*",
+    "vue": "*",
+    "vue-router": "*",
+    "vueify": "*",
+    "vuex": "*"
+  }
+}
