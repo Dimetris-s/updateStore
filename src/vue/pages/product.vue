@@ -24,19 +24,54 @@
                                 }
                         }">
                             <div class="image_wrapper swiper-wrapper">
-                                <div class="photo swiper-slide"  v-for="(img,index) in product.img" :key="index" :style="{background:'no-repeat url(' + img.url + ') center/contain',}">
-
+                                <div class="photo_image_box swiper-slide"  v-for="(img,index) in product.img" :key="index">
+                                    <img :src="img.url" alt="">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="right_bar">
+
                     <span>{{product.price}}</span>
                     <span>{{Number.parseInt(product.price) - (Number.parseInt(product.price) * product.rebate / 100)}}</span>
                     <a @click="setToBasket(product)">купить</a>
                     
-                    <div></div>
+                    <div class="accordion_user_information" >
+                        <div class="accordion_first" :class="{'open':isOpenAccordion}">
+                            <h3 @click="toggleAccrdion(this.event.target.parentElement)">Наши Преимущества</h3>
+                            <div class="accordion_message" ref="a1">
+                                <ul>
+                                    <li>Гибкая система скидок</li>
+                                    <li>Официальная гарантия</li>
+                                    <li>Официальная гарантия</li>
+                                    <li>Официальная гарантия</li>
+                                </ul>
+                            </div>
+                        </div>
+                       <div class="accordion_second" :class="{'open':isOpenAccordion}">
+                            <h3 @click="toggleAccrdion(this.event.target.parentElement)">Наши Преимущества</h3>
+                            <div class="accordion_message" ref="a1">
+                                <ul>
+                                    <li>Гибкая система скидок</li>
+                                    <li>Официальная гарантия</li>
+                                    <li>Официальная гарантия</li>
+                                    <li>Официальная гарантия</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="accordion_therd">
+                            <h3>Наши Преимущества</h3>
+                            <div class="accordion_message" :class="{'open':isOpenAccordion}">
+                                <ul>
+                                    <li>Гибкая система скидок</li>
+                                    <li>Официальная гарантия</li>
+                                    <li>Официальная гарантия</li>
+                                    <li>Официальная гарантия</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="footer_product">
@@ -50,6 +85,8 @@
 module.exports = {
     data:function(){
         return{
+            isOpenAccordion:false,
+
         }
     },
     computed:{
@@ -65,6 +102,14 @@ module.exports = {
     methods:{
         setToBasket(item){
             this.$store.dispatch('setBasket',item);
+        },
+        toggleAccrdion(idy){
+            
+            if(idy.classList.contains('open')){
+                this.isOpenAccordion = false;
+            }else{
+                this.isOpenAccordion = true;
+            }
         }
         //:style="{background:'no-repeat url(' + img.url + ') center/contain',height:'54px'}"
     },

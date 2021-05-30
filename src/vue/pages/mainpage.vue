@@ -1,8 +1,8 @@
 <template>
     <div class="content">
-        <!-- <slider />
+        <slider />
         <product />
-        <sale /> -->
+        <sale />
         <renderPromotion />
         <adUnit />
     </div>    
