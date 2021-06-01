@@ -22,6 +22,7 @@
     "vue": "*",
     "vue-router": "*",
     "vueify": "*",
-    "vuex": "*"
+    "vuex": "*",
+    "lightbox2":"*"
   }
 }

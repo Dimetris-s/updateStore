@@ -99,10 +99,5 @@ module.exports = {
            
         }
     },
-     mounted:function(){
-        $('.caruselCard').slick({
-           slidesToShow: 4,
-        })
-    }
 }
 </script>

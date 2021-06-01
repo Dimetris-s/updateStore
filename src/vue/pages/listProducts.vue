@@ -10,18 +10,16 @@
                             <p v-if="product.rebate">Скидка: {{ product.rebate }}%</p>
                             <div class="brand" v-for="(elem,index) in brand" :key="index">
                                 <img v-if="elem.name == product.brand" :src="elem.img">
-                                <!-- <div class="photo"  :style="{background:'center / contain no-repeat url(' + elem.img + ') ',}"> -->
                                 
-                                <!-- </div> -->
                             </div>
                         </router-link>
                         <span class="by_price">
-                            <span>{{Number.parseInt(product.price) - (Number.parseInt(product.price) * Number.parseInt(product.rebate)/100)}}</span>
-                            <span></span>
+                            <span class="old_price"><span class="fas fa-dollar-sign"></span>{{product.price}}</span>
+                            <span class="new_price"><span class="fas fa-dollar-sign"></span>{{Number.parseInt(product.price) - (Number.parseInt(product.price) * Number.parseInt(product.rebate)/100)}}</span>
                         </span>
-                        <button @click="moveToBasket(product)" v-if="!itemsBasket.some(el => el.artikl == product.artikl)">
-                            <span>Купить</span>
-                        </button>
+                        <div class="btn" @click="moveToBasket(product)" v-if="!itemsBasket.some(el => el.artikl == product.artikl)">
+                            <span class="btn_buy"><span class="fas fa-shopping-cart"></span> Купить</span>
+                        </div>
                         <span v-else>товар в корзине</span>
                     </div>
                 </article>

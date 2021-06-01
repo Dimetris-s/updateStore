@@ -32,46 +32,25 @@
                     </div>
                 </div>
                 <div class="right_bar">
-
-                    <span>{{product.price}}</span>
-                    <span>{{Number.parseInt(product.price) - (Number.parseInt(product.price) * product.rebate / 100)}}</span>
-                    <a @click="setToBasket(product)">купить</a>
-                    
-                    <div class="accordion_user_information" >
-                        <div class="accordion_first" :class="{'open':isOpenAccordion}">
-                            <h3 @click="toggleAccrdion(this.event.target.parentElement)">Наши Преимущества</h3>
-                            <div class="accordion_message" ref="a1">
-                                <ul>
-                                    <li>Гибкая система скидок</li>
-                                    <li>Официальная гарантия</li>
-                                    <li>Официальная гарантия</li>
-                                    <li>Официальная гарантия</li>
-                                </ul>
-                            </div>
-                        </div>
-                       <div class="accordion_second" :class="{'open':isOpenAccordion}">
-                            <h3 @click="toggleAccrdion(this.event.target.parentElement)">Наши Преимущества</h3>
-                            <div class="accordion_message" ref="a1">
-                                <ul>
-                                    <li>Гибкая система скидок</li>
-                                    <li>Официальная гарантия</li>
-                                    <li>Официальная гарантия</li>
-                                    <li>Официальная гарантия</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="accordion_therd">
-                            <h3>Наши Преимущества</h3>
-                            <div class="accordion_message" :class="{'open':isOpenAccordion}">
-                                <ul>
-                                    <li>Гибкая система скидок</li>
-                                    <li>Официальная гарантия</li>
-                                    <li>Официальная гарантия</li>
-                                    <li>Официальная гарантия</li>
-                                </ul>
+                    <h3 class="name_product">{{product.name}}</h3>
+                    <div class="colum_wrap">
+                        <div class="colum_left">
+                            <span>{{product.price}}</span>
+                            <span>{{Number.parseInt(product.price) - (Number.parseInt(product.price) * product.rebate / 100)}}</span>
+                            <a @click="setToBasket(product)">купить</a>
+                        </div>  
+                        <div class="colum_right" >
+                            <div class="accordion" :class="{'openAccordion':item.isOpenAccordion}" v-for="(item,index) in accordion" :key="index">
+                                <h3 @click="toggleAccrdion(index)">{{item.title}}</h3>
+                                <div class="accordion_message">
+                                    <ul>
+                                        <li v-for="(elemList,index) in item.description" :key="index">{{elemList}}</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
             <div class="footer_product">
@@ -85,7 +64,19 @@
 module.exports = {
     data:function(){
         return{
-            isOpenAccordion:false,
+            accordion:[{
+                title:'Наши Преимущества',
+                isOpenAccordion:true,
+                description:['Гибкая система скидок','Официальная гарантия','Официальная гарантия','Официальная гарантия'],
+            },{
+                title:'Наши Преимущества',
+                isOpenAccordion:false,
+                description:['Гибкая система скидок','Официальная гарантия','Официальная гарантия','Официальная гарантия'],
+            },{
+                title:'Наши Преимущества',
+                isOpenAccordion:false,
+                description:['Гибкая система скидок','Официальная гарантия','Официальная гарантия','Официальная гарантия'],
+            }],
 
         }
     },
@@ -95,7 +86,6 @@ module.exports = {
             return product.filter(product => product.artikl === this.selectProduct ? true : false)[0];
         },
         selectProduct(){
-            console.log(this.$route.params.code)
             return this.$route.params.code;
         },
     },
@@ -103,15 +93,9 @@ module.exports = {
         setToBasket(item){
             this.$store.dispatch('setBasket',item);
         },
-        toggleAccrdion(idy){
-            
-            if(idy.classList.contains('open')){
-                this.isOpenAccordion = false;
-            }else{
-                this.isOpenAccordion = true;
-            }
+        toggleAccrdion(id){
+            this.accordion[id].isOpenAccordion = !this.accordion[id].isOpenAccordion
         }
-        //:style="{background:'no-repeat url(' + img.url + ') center/contain',height:'54px'}"
     },
 }
 </script>

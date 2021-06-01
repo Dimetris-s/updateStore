@@ -3,7 +3,7 @@
         <div class="wrapper">
             <ul>
                 <li v-for="(photo,index) in photo" :key="index">
-                    <div class="photo" :style="{background:'center / cover no-repeat url(' + photo.img + ') ',}"></div>
+                    <div class="photo" data-lightbox="roadtrip" :style="{background:'center / cover no-repeat url(' + photo.img + ') ',}"></div>
                 </li>
             </ul>
         </div>

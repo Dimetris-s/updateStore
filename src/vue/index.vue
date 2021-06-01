@@ -136,7 +136,8 @@
         filterProduct(){
             if(this.products != undefined){
                 return this.products.filter((element) => {
-                    if(element.artikl.indexOf(this.value) != -1){
+                    if(element.name.indexOf(this.value) != -1){
+                        // console.log(element.name)
                         return true
                     }else{
                         return false

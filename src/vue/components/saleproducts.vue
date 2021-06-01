@@ -1,15 +1,14 @@
 <template>
-    <section class="oldProducts">
+    <section class="profitable_offer">
         <div class="wrapper">
-            <div class="titleOldProducts">
-                <h2>Акции/Скидки/Расспродажи</h2>
+            <div class="profitable_title">
+                <h2>Выгодные предложения</h2>
             </div>
-            <div class="Navigation">
-                <button class="btn_lo" @click="action()" :class="{active:isActive}">Акции</button>
-                <button class="btn_lo" style="margin: 0 15px">Скидки</button>
-                <button class="btn_lo" >Расспродажи</button>
+            <div class="profitable_navigation">
+                <button class="btn" @click="saleProduct()">Скидки</button>
+                <button class="btn" @click="discountProduct()">Расспродажи</button>
             </div>
-            <div class="caruselCard swiper-container" v-swiper="{loop: true,
+            <div class="profitable_container swiper-container" v-swiper="{loop: true,
                     slidesPerView:4,
                     spaceBetween:30,
                     navigation: {
@@ -17,75 +16,26 @@
                         prevEl: '.swiper-button-prev',
                     },}">
                 <div class="swiper-wrapper">
-                    <div class="card swiper-slide" >
-                        <div class="card-wrapper">
-                        <div class="photo" style="background-image:url('./img/CS-B023(1).jpg')"></div>
-                            <h3 class="productName">CS-203 LT</h3>
-                            <p class="productDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Odit adipisci corrupti porro quaerat autem voluptatem deserunt sed illum. 
-                                Fugit ab adipisci expedita iusto voluptas placeat quasi sint itaque magnam architecto.</p>
-                            <div class="price">
-                                <p>3,783 ₴</p>
-                                <span></span>
-                            </div>
+                    <article class="profitable_card swiper-slide" v-for="(product,index) in products" :key="index">
+                        <div class="product">
+                            <router-link :to="{name:'selectProduct',params:{code:product.artikl}}">
+                                <img :src="product.img[0].url" alt="">
+                                <h3>{{product.name}}</h3>
+                                <p v-if="product.rebate">Скидка: {{ product.rebate }}%</p>
+                                <div class="brand" v-for="(elem,index) in brand" :key="index">
+                                    <img v-if="elem.name == product.brand" :src="elem.img">
+                                </div>
+                            </router-link>
+                            <span class="by_price">
+                                <span class="old_price"><span class="fas fa-dollar-sign"></span>{{product.price}}</span>
+                                <span class="new_price"><span class="fas fa-dollar-sign"></span>{{Number.parseInt(product.price) - (Number.parseInt(product.price) * Number.parseInt(product.rebate)/100)}}</span>
+                                <!-- <button @click="moveToBasket(product)" v-if="!itemsBasket.some(el => el.artikl == product.artikl)">
+                                    <span>Купить</span>
+                                </button>
+                                <span v-else>товар в корзине</span> -->
+                            </span>
                         </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <!-- <img src="./img/CS-B610(1).jpg" alt=""> -->
-                        <div class="card-wrapper">
-                        <div class="photo" style="background-image:url('./img/CS-B610(1).jpg')"></div>
-                            <h3 class="productName">CS-203 LT</h3>
-                            <p class="productDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Odit adipisci corrupti porro quaerat autem voluptatem deserunt sed illum. 
-                                Fugit ab adipisci expedita iusto voluptas placeat quasi sint itaque magnam architecto.</p>
-                            <div class="price">
-                                <p>3,783 ₴</p>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <!-- <img src="./img/M-YL830(1).jpg" alt=""> -->
-                        <div class="card-wrapper">
-                        <div class="photo" style="background-image:url('./img/M-YL830(1).jpg')"></div>
-                            <h3 class="productName">CS-203 LT</h3>
-                            <p class="productDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Odit adipisci corrupti porro quaerat autem voluptatem deserunt sed illum. 
-                                Fugit ab adipisci expedita iusto voluptas placeat quasi sint itaque magnam architecto.</p>
-                            <div class="price">
-                                <p>3,783 ₴</p>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <!-- <img src="./img/PL-31K(1).jpg" alt=""> -->
-                        <div class="card-wrapper">
-                        <div class="photo" style="background-image:url('./img/PL-31K(1).jpg"></div>
-                            <h3 class="productName">CS-203 LT</h3>
-                            <p class="productDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Odit adipisci corrupti porro quaerat autem voluptatem deserunt sed illum. 
-                                Fugit ab adipisci expedita iusto voluptas placeat quasi sint itaque magnam architecto.</p>
-                            <div class="price">
-                                <p>3,783 ₴</p>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card swiper-slide">
-                        <!-- <img src="./img/VS-85(1) (1).jpg" alt=""> -->
-                        <div class="card-wrapper">
-                        <div class="photo" style="background-image:url('./img/VS-85(1) (1).jpg')"></div>
-                            <h3 class="productName">CS-203 LT</h3>
-                            <p class="productDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                                Odit adipisci corrupti porro quaerat autem voluptatem deserunt sed illum. 
-                                Fugit ab adipisci expedita iusto voluptas placeat quasi sint itaque magnam architecto.</p>
-                            <div class="price">
-                                <p>3,783 ₴</p>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </div>
@@ -96,13 +46,51 @@
 module.exports = {
     data:function(){
         return {
-           isActive:false
+           isActive:false,
+           products:[]
         }
     },
     methods:{
         action(){
             this.isActive = !this.isActive;
+        },
+        saleProduct(){
+            this.storeProducts
+            let saleProduct = this.storeProducts.filter(el =>{
+                if(el.sales == true){
+                    return true
+                }else{
+                    return false
+                }
+            })
+            this.products = saleProduct
+            
+            console.log('sale');
+        },
+        discountProduct(){
+            this.storeProducts
+            let discountProduct = this.storeProducts.filter(el =>{
+                if(el.discounts == true){
+                    return true
+                }else{
+                    return false
+                }
+            })
+            this.products = discountProduct
+            console.log('discount')
         }
     },
+    computed:{
+        brand(){
+            return this.$store.getters['getBrand'].brand
+        },
+        storeProducts(){
+            this.products = this.$store.getters['products'].products;
+            return  this.$store.getters['products'].products;
+        }
+    },
+    mounted(){
+        
+    }
 }
 </script>

@@ -4,5 +4,6 @@
 // let Navigation = require('swiper/core')
 // Swiper.use(Navigation)
 // require('swiper')
+// require('lightbox2')
 
 require('./app/app');

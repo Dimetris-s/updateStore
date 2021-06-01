@@ -10,7 +10,6 @@ Vue.directive('swiper',{
     }
 })
 
-
 new Vue({
     el:'#app',
     router:require('./app.router'),
