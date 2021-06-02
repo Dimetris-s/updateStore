@@ -1,6 +1,7 @@
 const Vue = require('vue');
 const Vuex = require('vuex');
 const Firebase = require('firebase/firebase');
+const { default: axios } = require('axios');
 
 Vue.use(Vuex);
 
@@ -29,6 +30,7 @@ module.exports = new Vuex.Store({
         promotions:[],
         basket:[],
         brand:[],
+        isUSD: true
     },
     
     getters:{
@@ -52,10 +54,16 @@ module.exports = new Vuex.Store({
         },
         getBrand(state){
             return state.brand;
+        },
+        isUSD(state) {
+            return state.isUSD
         }
     },
 
     mutations:{
+        changeCurrency(state, payload) {
+            state.isUSD = payload
+        },
         getCategory(state,payload){
             state.category = payload;
         },
@@ -80,12 +88,34 @@ module.exports = new Vuex.Store({
         },
         getBrand(state,payload){
             state.brand = payload;
+        },
+        setUSD(state, payload) {
+            state.products?.products?.forEach(product => product.price = Number(product.price) / payload)
+        },
+        setUAH(state, payload) {
+            state.products?.products?.forEach(product => product.price = Number(product.price) * payload)
         }
     },
 
     actions:{
+        setUSD(context) {
+            axios.get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+                .then(response => {
+                    const course = +response.data.find(item => item["ccy"] === "USD").sale
+                    context.commit('setUSD', course)
+                    context.commit('changeCurrency', true)
+
+                })
+        },
+        setUAH(context) {
+            axios.get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+                .then(response => {
+                    const course = +response.data.find(item => item["ccy"] === "USD").sale
+                    context.commit('setUAH', course)
+                    context.commit('changeCurrency', false)
+                })
+        },
         getCategory(context){
-            console.log(2)
             db.collection('category').doc('category').get()
                 .then(function(response) {
                     context.commit('getCategory',response.data())
@@ -94,6 +124,7 @@ module.exports = new Vuex.Store({
         getProducts(context){
             db.collection('products').doc('product').get()
                 .then(function(response) {
+                    console.log(response.data())
                     context.commit('getProducts',response.data())
                 })    
         },
@@ -128,7 +159,8 @@ module.exports = new Vuex.Store({
                 .then(function(response){
                     context.commit('getBrand',response.data());
                 })
-        }
+        },
+
     }
 
 })

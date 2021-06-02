@@ -14,8 +14,8 @@
                             </div>
                         </router-link>
                         <span class="by_price">
-                            <span class="old_price"><span class="fas fa-dollar-sign"></span>{{product.price}}</span>
-                            <span class="new_price"><span class="fas fa-dollar-sign"></span>{{Number.parseInt(product.price) - (Number.parseInt(product.price) * Number.parseInt(product.rebate)/100)}}</span>
+                            <span class="old_price"><span :class="{'fa-dollar-sign':isUSD, 'fa-hryvnia':!isUSD}" class="fas"></span>{{product.price}}</span>
+                            <span class="new_price"><span :class="{'fa-dollar-sign':isUSD, 'fa-hryvnia':!isUSD}" class="fas"></span>{{Number.parseInt(product.price) - (Number.parseInt(product.price) * Number.parseInt(product.rebate)/100)}}</span>
                         </span>
                         <div class="btn" @click="moveToBasket(product)" v-if="!itemsBasket.some(el => el.artikl == product.artikl)">
                             <span class="btn_buy"><span class="fas fa-shopping-cart"></span> Купить</span>
@@ -57,11 +57,15 @@ module.exports = {
         brand(){
             console.log(this.$store.getters['getBrand'].brand);
             return this.$store.getters['getBrand'].brand;
-        }
+        },
+        isUSD() {
+            return this.$store.getters['isUSD'];
+        },
     },
     methods:{
         moveToBasket(item){
             this.$store.dispatch('setBasket',item)
+            console.log(this.isUSD)
         }
     },
     

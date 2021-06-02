@@ -1,4 +1,7 @@
 {
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
+  },
   "name": "wow_app_test_0",
   "version": "1.0.0",
   "description": "",
@@ -23,6 +26,6 @@
     "vue-router": "*",
     "vueify": "*",
     "vuex": "*",
-    "lightbox2":"*"
+    "lightbox2": "*"
   }
 }

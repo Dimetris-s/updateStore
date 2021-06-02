@@ -123,7 +123,6 @@
             isOpen:false,
             value:'',
             isOpenBasket:false,
-
         }
     },
     computed:{
@@ -132,6 +131,9 @@
         },
         products(){
             return this.$store.getters['products'].products;
+        },
+        isUSD() {
+            return this.$store.getters['isUSD'];
         },
         filterProduct(){
             if(this.products != undefined){
@@ -163,11 +165,16 @@
             this.drop = false;
         },
         resetPrice(){
-            
+            if(!this.isUSD) {
+                this.$store.dispatch('setUSD')
+                // this.$store.commit('changeCurrency', true)
+            }
         },
         updatePrice(){
-            console.log(1)
-            this.products.price =Number.parseInt(this.products.price)*28;
+            if(this.isUSD) {
+                this.$store.dispatch('setUAH')
+                // this.$store.commit('changeCurrency', false)
+            }
         }
     },
     components:{
